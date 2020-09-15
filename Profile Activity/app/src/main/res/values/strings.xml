@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">InClass03</string>
+    <string name="app_avatar">Select Avatar</string>
+    <string name="app_profile">My Profile</string>
+    <string name="et_firstname">First Name</string>
+    <string name="et_lastname">Last Name</string>
+    <string name="tv_avatar">Select Avatar</string>
+    <string name="bt_save">Save</string>
+    <string name="bt_edit">Edit</string>
+</resources>
