@@ -1,0 +1,101 @@
+Student Name: Balasundaram Avudai Nayagam	
+Student ID: 801104903
+
+Using username "hadoop".
+Authenticating with public key "imported-openssh-key"
+Passphrase for key "imported-openssh-key":
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+3 package(s) needed for security, out of 17 available
+Run "sudo yum update" to apply all updates.
+
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+
+[hadoop@ip-172-31-79-248 ~]$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.6.2.jar!/                                                                                                             org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.10.jar!/                                                                                                             org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.                                                                                                             properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versio                                                                                                             ns. Consider using a different execution engine (i.e. spark, tez) or using Hive                                                                                                              1.X releases.
+hive> CREATE TABLE UNCCUserNameCarData(Buying STRING,Maint STRING,Doors STRING,P                                                                                                             ersons STRING,LugBoot STRING,Safety STRING,Class String)
+    > COMMENT 'This is the Cars table'
+    > ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+    > LINES TERMINATED BY '\n'
+    > STORED AS TEXTFILE;
+[hadoop@ip-172-31-79-248 ~]$ CREATE TABLE UNCCUserNameCarData(Buying STRING,Maint STRING,Doors STRING,Persons STRING,LugBoot STRING,Safety STRING,Class String)
+-bash: syntax error near unexpected token `('
+[hadoop@ip-172-31-79-248 ~]$ COMMENT 'This is the Cars table'
+-bash: COMMENT: command not found
+[hadoop@ip-172-31-79-248 ~]$ ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+-bash: ROW: command not found
+[hadoop@ip-172-31-79-248 ~]$ LINES TERMINATED BY '\n'
+-bash: LINES: command not found
+[hadoop@ip-172-31-79-248 ~]$ STORED AS TEXTFILE;
+-bash: STORED: command not found
+[hadoop@ip-172-31-79-248 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+hive> CREATE TABLE UNCCUserNameCarData(Buying STRING,Maint STRING,Doors STRING,Persons STRING,LugBoot STRING,Safety STRING,Class String)
+    > COMMENT 'This is the Cars table'
+    > ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+    > LINES TERMINATED BY '\n'
+    > STORED AS TEXTFILE;
+OK
+Time taken: 1.521 seconds
+hive> load data inpath 's3://801104903bucket/data.txt' overwrite into table UNCCUserNameCarData;
+Loading data to table default.unccusernamecardata
+OK
+Time taken: 6.972 seconds
+hive> load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarData;load data inpath 's3://BUCKET_NAME/data.txt' overwrite into table UNCCUserNameCarDataOK
+    > Time taken: 1.521 seconds
+    > OK
+    > Time taken: 1.521 seconds
+    > INSERT OVERWRITE LOCAL DIRECTORY './CarDataHiveOutput'
+    > ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+    > SELECT * FROM UNCCUserNameCarData
+    > WHERE UNCCUserNameCarData.Buying = 'vhigh'
+    > AND UNCCUserNameCarData.Doors LIKE '%more'
+    > AND UNCCUserNameCarData.Class = 'unacc';
+hive> INSERT OVERWRITE LOCAL DIRECTORY './CarDataHiveOutput'
+    > ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+    > SELECT * FROM UNCCUserNameCarData
+    > WHERE UNCCUserNameCarData.Buying = 'vhigh'
+    > AND UNCCUserNameCarData.Doors LIKE '%more'
+    > AND UNCCUserNameCarData.Class = 'unacc';
+Query ID = hadoop_20200205003306_ec69dbb3-c600-4692-9b63-a3725ddee8a7
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1580857732689_0001)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 01/01  [==========================>>] 100%  ELAPSED TIME: 7.66 s
+----------------------------------------------------------------------------------------------
+Moving data to local directory CarDataHiveOutput
+OK
+Time taken: 13.261 seconds
+hive> [hadoop@ip-172-31-79-248 ~]$ aws s3 cp ./CarDataHiveOutput/000000_0 s3://801104903bucket/CarDataHiveOutput.txt
+upload: CarDataHiveOutput/000000_0 to s3://801104903bucket/CarDataHiveOutput.txt
+[hadoop@ip-172-31-79-248 ~]$
